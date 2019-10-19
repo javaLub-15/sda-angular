@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabela wyników Formuły 1</title>
+    <script src="js/angular.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+</head>
+<body ng-app="aplikacjaKierowcy">
+<div class="container" ng-controller="kontrolerTabeliKierowcow">
+    <div class="row">
+        <div class="col-sm-8 center-block">
+            <h1 class="text-center">Klasyfikacja {{kierowcy.length}} kierowców Formuły 1</h1>
+            <div class="input-group">
+                <input type="text" ng-model="wyszukiwarka" class="form-control"
+                       placeholder="Szukaj: "
+                       aria-label="Search"/>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="naglowek in [
+                        'Pozycja', 'Kierowca', 'Kraj', 'Zespół', 'Punkty'
+                        ]">
+                            {{naglowek}}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="kierowca in kierowcy | filter : wyszukiwarka">
+                        <td>{{kierowca.M}}</td>
+                        <td>{{kierowca.Kierowca}}</td>
+                        <td>{{kierowca.Kraj}}</td>
+                        <td>{{kierowca.team}}</td>
+                        <td>{{kierowca.points}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var aplikacja = angular.module('aplikacjaKierowcy', []);
+    aplikacja.controller('kontrolerTabeliKierowcow', ['$scope', '$filter', function ($scope,
+                                                                                     $filter) {
+        $scope.kierowcy = [
+            {
+                "M": 1,
+                "Kierowca": "Lewis Hamilton",
+                "Kraj": "Wlk. Brytania",
+                "team": "Mercedes",
+                "points": 197
+            },
+            {
+                "M": 2,
+                "Kierowca": "Valtteri Bottas",
+                "Kraj": "Finlandia",
+                "team": "Mercedes",
+                "points": 166
+            },
+            {
+                "M": 3,
+                "Kierowca": "Max Verstappen",
+                "Kraj": "Holandia",
+                "team": "Red Bull Racing",
+                "points": 126
+            },
+            {
+                "M": 4,
+                "Kierowca": "Sebastian Vettel",
+                "Kraj": "Niemcy",
+                "team": "Ferrari",
+                "points": 123
+            },
+            {
+                "M": 5,
+                "Kierowca": "Charles Leclerc",
+                "Kraj": "Monako",
+                "team": "Ferrari",
+                "points": 105
+            },
+            {
+                "M": 6,
+                "Kierowca": "Pierre Gasly",
+                "Kraj": "Francja",
+                "team": "Red Bull Racing",
+                "points": 43
+            },
+            {
+                "M": 7,
+                "Kierowca": "Carlos Sainz",
+                "Kraj": "Hiszpania",
+                "team": "McLaren",
+                "points": 30
+            },
+            {
+                "M": 8,
+                "Kierowca": "Lando Norris",
+                "Kraj": "Wielka Brytania",
+                "team": "McLaren",
+                "points": 22
+            },
+            {
+                "M": 9,
+                "Kierowca": "Kimi Raikkonen",
+                "Kraj": "Finlandia",
+                "team": "Alfa Romeo Racing",
+                "points": 21
+            },
+            {
+                "M": 10,
+                "Kierowca": "Daniel Ricciardo",
+                "Kraj": "Australia",
+                "team": "Renault",
+                "points": 16
+            },
+            {
+                "M": 11,
+                "Kierowca": "Nico Hulkenberg",
+                "Kraj": "Niemcy",
+                "team": "Renault",
+                "points": 16
+            },
+            {
+                "M": 12,
+                "Kierowca": "Kevin Magnussen",
+                "Kraj": "Dania",
+                "team": "Haas",
+                "points": 14
+            },
+            {
+                "M": 13,
+                "Kierowca": "Sergio Perez",
+                "Kraj": "Meksyk",
+                "team": "Racing Point",
+                "points": 13
+            },
+            {
+                "M": 14,
+                "Kierowca": "Daniił Kwiat",
+                "Kraj": "Rosja",
+                "team": "Toro Rosso",
+                "points": 10
+            },
+            {
+                "M": 15,
+                "Kierowca": "Alexander Albon",
+                "Kraj": "Tajlandia",
+                "team": "Toro Rosso",
+                "points": 7
+            },
+            {
+                "M": 16,
+                "Kierowca": "Lance Stroll",
+                "Kraj": "Kanada",
+                "team": "Racing Point",
+                "points": 6
+            },
+            {
+                "M": 17,
+                "Kierowca": "Romain Grosjean",
+                "Kraj": "Francja",
+                "team": "Haas",
+                "points": 2
+            },
+            {
+                "M": 18,
+                "Kierowca": "Antonio Giovinazzi",
+                "Kraj": "Włochy",
+                "team": "Alfa Romeo Racing",
+                "points": 1
+            },
+            {
+                "M": 19,
+                "Kierowca": "George Russell",
+                "Kraj": "Wielka Brytania",
+                "team": "Williams",
+                "points": 0
+            },
+            {
+                "M": 20,
+                "Kierowca": "Robert Kubica",
+                "Kraj": "Polska",
+                "team": "Williams",
+                "points": 0
+            }
+        ];
+    }]);
+</script>
+</body>
+</html>
