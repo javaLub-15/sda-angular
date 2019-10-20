@@ -11,9 +11,15 @@
 <body>
 <main id="middle" class="container mt-5 pt-5" ng-app="exampleApp">
     <div ng-controller="exampleControlleer" ng-init="init()">
-        <div class="jumbotron">
-            <div class="container">
-                <h1>{{myData.title}}</h1>
+        <div ng-controller="exampleControlleer" ng-init="init()">
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Aktualna pogoda w Lublinie:</h1>
+                    <h2>Temperatura: {{myData.main.temp}}&#8451;</h2>
+                    <h2>Ciśnienie: {{myData.main.pressure}} hPa</h2>
+                    <h2>Wilgotność powietrza: {{myData.main.humidity}} %</h2>
+                    <h2>Prędkość wiatru: {{myData.wind.speed}} m/s</h2>
+                </div>
             </div>
         </div>
     </div>
@@ -21,12 +27,35 @@
 <script>
     var exampleApp = angular.module('exampleApp', []);
     exampleApp.controller('exampleControlleer', function ($scope, $http) {
-            let url = 'https://jsonplaceholder.typicode.com/todos/1';
+            let url = 'https://api.openweathermap.org/data/2.5/weather';
+            let cityCountry = 'Lublin,pl';
+            let appid = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+            let units = 'metric';
             $scope.init = function () {
-                $http.get(url)
-                    .then(function (response) {
-                        $scope.myData = response.data;
-                    });
+
+
+
+                // $http.get(url)
+                //     .then(function (response) {
+                //         $scope.myData = response.data;
+                //     });
+
+
+                $http({
+                    method: 'GET',
+                    url: url,
+                    params: {
+                        appid: appid,
+                        q: cityCountry,
+                        units: units
+                    }
+                }).then(
+                    function (odpowiedz) {
+                        $scope.myData = odpowiedz.data;
+                    }
+                );
+
+
             }
         }
     );
